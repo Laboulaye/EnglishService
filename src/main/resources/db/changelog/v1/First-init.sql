@@ -34,3 +34,39 @@ INSERT INTO `english`.`roles` (`name`) VALUES ('MANAGER');
 INSERT INTO `english`.`roles` (`name`) VALUES ('ADMIN');
 
 INSERT INTO `english`.`users_roles` (`user_id`, `role_id`) VALUES ('1', '1');
+
+CREATE TABLE `english`.`en_words` (
+                                      `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+                                      `meaning` VARCHAR(45) NOT NULL,
+                                      PRIMARY KEY (`id`),
+                                      UNIQUE INDEX `meaning_UNIQUE` (`meaning` ASC) VISIBLE);
+
+CREATE TABLE `english`.`ru_words` (
+                                      `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+                                      `meaning` VARCHAR(45) NOT NULL,
+                                      PRIMARY KEY (`id`),
+                                      UNIQUE INDEX `meaning_UNIQUE` (`meaning` ASC) VISIBLE);
+
+
+CREATE TABLE `english`.`cards` (
+                                   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+                                   `en_word_id` BIGINT(20) NOT NULL,
+                                   `ru_word_id` BIGINT(20) NOT NULL,
+                                   `rating` BIGINT(20) NULL,
+                                   PRIMARY KEY (`id`),
+                                   INDEX `fk_en_word_idx` (`en_word_id` ASC) VISIBLE,
+                                   INDEX `fk_ru_word_idx` (`ru_word_id` ASC) VISIBLE,
+                                   CONSTRAINT `fk_en_word`
+                                       FOREIGN KEY (`en_word_id`)
+                                           REFERENCES `english`.`en_words` (`id`)
+                                           ON DELETE NO ACTION
+                                           ON UPDATE NO ACTION,
+                                   CONSTRAINT `fk_ru_word`
+                                       FOREIGN KEY (`ru_word_id`)
+                                           REFERENCES `english`.`ru_words` (`id`)
+                                           ON DELETE NO ACTION
+                                           ON UPDATE NO ACTION);
+
+INSERT INTO `english`.`en_words` (`meaning`) VALUES ('Hello');
+INSERT INTO `english`.`ru_words` (`meaning`) VALUES ('Привет');
+INSERT INTO `english`.`cards` (`en_word_id`, ru_word_id, rating) VALUES ('1', '1', '1');
