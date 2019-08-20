@@ -34,6 +34,7 @@ INSERT INTO `english`.`roles` (`name`) VALUES ('MANAGER');
 INSERT INTO `english`.`roles` (`name`) VALUES ('ADMIN');
 
 INSERT INTO `english`.`users_roles` (`user_id`, `role_id`) VALUES ('1', '1');
+INSERT INTO `english`.`users_roles` (`user_id`, `role_id`) VALUES ('2', '1');
 
 CREATE TABLE `english`.`en_words` (
                                       `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -69,4 +70,8 @@ CREATE TABLE `english`.`cards` (
 
 INSERT INTO `english`.`en_words` (`meaning`) VALUES ('Hello');
 INSERT INTO `english`.`ru_words` (`meaning`) VALUES ('Привет');
-INSERT INTO `english`.`cards` (`en_word_id`, ru_word_id, rating) VALUES ('1', '1', '1');
+INSERT INTO `english`.`cards` (en_word_id, ru_word_id, rating) VALUES ('1', '1', '1');
+
+INSERT INTO `english`.`en_words` (`meaning`) VALUES ('Mia');
+INSERT INTO `english`.`ru_words` (`meaning`) VALUES ('Миа');
+INSERT INTO `english`.`cards` (en_word_id, ru_word_id, rating) VALUES ('2', '2', '2');
